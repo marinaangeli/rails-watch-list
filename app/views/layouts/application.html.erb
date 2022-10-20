@@ -11,13 +11,13 @@
   </head>
 
   <body>
-    <div class="navbar navbar-lewagon">
+    <div class="navbar navbar-lewagon navbar-nav-scroll">
       <div class="navbar-brand">
         <img src="https://img.icons8.com/color/344/popcorn.png" alt="popcorn" class="logo">
       </div>
       <div class="left-navbar-links d-flex">
         <%= link_to "My Lists", lists_path, class: "nav-link me-3" %>
-        <%= link_to "New Lists", new_list_path, class: "nav-link me-3" %>
+        <%= link_to "New List", new_list_path, class: "nav-link me-3" %>
       </div>
     </div>
     <%= yield %>
