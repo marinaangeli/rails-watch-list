@@ -56,7 +56,7 @@ end
 10.times do
   Review.create(
     content: Faker::Quote.matz,
-    rating: rand(0..5),
+    rating: rand(1..5),
     list_id: @lists_ids.sample
   )
 end

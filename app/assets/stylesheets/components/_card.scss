@@ -35,6 +35,8 @@
 }
 
 .card{
+  height: 100px;
+
   img{
     .center-cropped {
       width: 100px;
@@ -43,4 +45,8 @@
       background-repeat: no-repeat;
     }
   }
+}
+
+.small-size {
+  font-size: smaller;
 }
