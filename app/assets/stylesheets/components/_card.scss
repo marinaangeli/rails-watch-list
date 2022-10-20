@@ -33,3 +33,14 @@
 .space-placeholder{
   flex-grow: 1;
 }
+
+.card{
+  img{
+    .center-cropped {
+      width: 100px;
+      height: 100px;
+      background-position: center center;
+      background-repeat: no-repeat;
+    }
+  }
+}

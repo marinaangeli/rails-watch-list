@@ -4,21 +4,19 @@
   </div>
 </div>
 
-<div class="container px-4">
-  <div class="my-4">
-      <button class="btn btn-success text-white rounded ms-auto h-25 d-inline-block" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-        Button with data-bs-target
-      </button>
+<div class="container px-4 border">
+  <div class="my-4 d-grid border">
+    <button class="btn btn-secondary text-white rounded" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="true" aria-controls="collapseExample">Bookmark a movie!</button>
     <%# <button class="btn btn-success text-white rounded ms-auto h-25 d-inline-block" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample">
       Add Movie
     </button> %>
     <div>
-      <div class="collapse" id="collapseExample">
+      <div class="collapse border" id="collapseExample">
         <%= simple_form_for [@list, @bookmark] do |f| %>
-          <div class="d-flex align-items-center">
-            <%= f.association :movie, input_html: {data: {controller: "tom_select"}}, class:"mx-2" %>
-            <%= f.input :comment, class:"h-25 d-inline-block mx-2" %>
-            <%= f.submit "Add Movie", class: "btn btn-primary mx-2", style:"max-height:30px;" %>
+          <div class="d-flex align-items-center justify-content-center border gap-4">
+            <%= f.association :movie, input_html: {data: {controller: "tom_select"}}, class:"mx-2 border" %>
+            <%= f.input :comment, class:"h-25 d-inline-block mx-2 border" %>
+            <%= f.submit "Add Movie", class: "btn btn-primary mx-2 border" %>
           </div>
         <% end %>
       </div>
