@@ -1,0 +1,90 @@
+<div class="index-banner", style="background-image: url(https://source.unsplash.com/random/300×150/?<%= @list.name.gsub(" ","-")%>)">
+  <div class="container-fluid banner-text">
+    <h1><%= @list.name%></h1>
+  </div>
+</div>
+
+<div class="container px-4">
+  <div class="my-4">
+      <button class="btn btn-success text-white rounded ms-auto h-25 d-inline-block" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+        Button with data-bs-target
+      </button>
+    <%# <button class="btn btn-success text-white rounded ms-auto h-25 d-inline-block" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample">
+      Add Movie
+    </button> %>
+    <div>
+      <div class="collapse" id="collapseExample">
+        <%= simple_form_for [@list, @bookmark] do |f| %>
+          <div class="d-flex align-items-center">
+            <%= f.association :movie, input_html: {data: {controller: "tom_select"}}, class:"mx-2" %>
+            <%= f.input :comment, class:"h-25 d-inline-block mx-2" %>
+            <%= f.submit "Add Movie", class: "btn btn-primary mx-2", style:"max-height:30px;" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+    <%#= link_to "Add Movie", new_list_bookmark_path(@list), class:"btn btn-success text-white rounded ms-auto", style:"border-radius: 5px !important;" %>
+  </div>
+  <div class="border row">
+    <% @list.movies.each do |movie| %>
+      <div class="col-md-6 mb-3">
+        <div class="card shadow h-100">
+          <img src="<%=movie.poster_url%>" class="card-img-top" alt="...">
+          <% bookmark = Bookmark.find_by(list: @list, movie: movie) %>
+          <div class="card-body">
+            <div class="d-flex">
+              <h5 class="card-title fw-bolder"><%= movie.title %></h5>
+              <div class="d-flex ms-3">
+                <span class="fw-bolder text-muted"><%=movie.rating%></span>
+                <i class="fa-solid fa-star" style="color: #FEDE01;"></i>
+              </div>
+            </div>
+            <p class="card-text text-muted small"><%= movie.overview%></p>
+            <div class="d-flex">
+              <span><%=bookmark.comment%></span>
+              <%= link_to "Delete",
+                bookmark_path(bookmark),
+                data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}
+              %>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+<%# <div class="container", style="background-color: blue;"> %>
+<%# <%@bookmarked_movies = []%>
+<%# @list.movies.each do |movie| %>
+  <%# @bookmarked_movies << movie.title %>
+<%# end %>
+<%#=@bookmarked_movies %>
+<%# </div>
+<br> %>
+<%#= @movies %>
+
+<%= simple_form_for [@list, @bookmark] do |f| %>
+  <%= f.association :movie, input_html: {data: {controller: "tom_select"}} %>
+  <%= f.input :comment %>
+  <%= f.submit %>
+<% end %>
+<br><br><br>
+<%= link_to "Delete List!",
+  list_path(@list),
+  data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}
+%>
+<br><br><br>
+
+<h1>New review</h1>
+<%= simple_form_for [@list, @review] do |f| %>
+  <%= f.input :content %>
+  <%= f.input :rating, collection: Review::RATINGS  %>
+  <%= f.submit "Submit review", class: "btn btn-primary" %>
+<% end %>
+
+<h1>Reviews</h1>
+<% @list.reviews.each do |review| %>
+  <p>Rating: <%= review.rating %></p>
+  <p>Comment: <%= review.content%></p>
+<% end %>

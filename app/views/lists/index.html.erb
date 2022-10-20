@@ -1,0 +1,19 @@
+<div class="index-banner" id="banner-index-img">
+  <div class="container-fluid banner-text">
+    <h1>Save your movies!</h1>
+  </div>
+</div>
+<div class="container px-4">
+  <div class="d-flex justify-content-between my-4">
+    <h3>My Lists</h3>
+    <%= link_to "Create a movie list", new_list_path, class:"btn btn-success text-white rounded", style:"border-radius: 5px !important;" %>
+  </div>
+  <div class="cards">
+    <% @lists.each do |list| %>
+      <div class="border card-index", style="background-image: url(https://source.unsplash.com/random/300×150/?<%= list.name.gsub(" ","-")%>)">
+        <%= link_to list.name, list_path(list), style:"color: white !important;" %>
+      </div>
+    <% end %>
+    <div class="space-placeholder"></div>
+  </div>
+</div>
