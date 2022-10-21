@@ -2,7 +2,7 @@
   <div  class="col-8 mt-5 mx-auto p-3 bg-white">
     <%= simple_form_for @list do |f| %>
       <%= f.input :name, label: "Enter new list's name:" %>
-      <%= f.input :photo, as: :file, label: "Upload a photo to represent your list:", hint: "If you don't uploado one, we will randomly add it :)" %>
+      <%= f.input :photo, as: :file, label: "Upload a photo to represent your list:", hint: "If you don't upload one, we will randomly pick it :)" %>
       <%= f.submit %>
     <% end %>
   </div>
