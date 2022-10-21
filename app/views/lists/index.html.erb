@@ -12,11 +12,11 @@
   <div class="cards">
     <% @lists.each do |list| %>
       <% if list.photo.attached? %>
-        <%= cl_image_tag list.photo.key, height: 150, width: 300, crop: :fill %>
+        <div class="border card-index", style="background-image: url('<%= cl_image_path list.photo.key, crop: :fill %>')">
       <% else %>
         <div class="border card-index", style="background-image: url(https://source.unsplash.com/random/300×150/?<%= list.name.gsub(" ","-")%>)">
       <% end %>
-      <%= link_to list.name, list_path(list), style:"color: white !important;" %>
+        <%= link_to list.name, list_path(list), style:"color: white !important;" %>
       </div>
     <% end %>
     <div class="space-placeholder"></div>
