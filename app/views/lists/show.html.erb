@@ -1,15 +1,15 @@
 <%# If user uploaded a photo, will show user's photo on the banner. Otherwise, will randomply pick from Unsplash %>
 <% if @list.photo.attached? %>
-    <div class="index-banner", style="background-image: url('<%= cl_image_path @list.photo.key, crop: :fill %>')">
+    <div class="index-banner position-relative", style="background-image: url('<%= cl_image_path @list.photo.key, crop: :fill %>')">
   <% else %>
-    <div class="index-banner", style="background-image: url(https://source.unsplash.com/random/300×150/?<%= @list.name.gsub(" ","-")%>)">
+    <div class="index-banner position-relative", style="background-image: url(https://source.unsplash.com/random/300×150/?<%= @list.name.gsub(" ","-")%>)">
   <% end %>
 
 <%# Rest of Banner settings %>
-  <div class="container-fluid banner-text">
+  <div class="container-fluid banner-text position-absolute top-50 start-50 translate-middle">
     <h1><%= @list.name%></h1>
   </div>
-  <div class="align-self-end m-2",>
+  <div class="position-absolute bottom-0 end-0 mb-3 me-3",>
     <%= link_to "delete",
       list_path(@list),
       data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, :class => "btn btn-warning text-white rounded"
