@@ -1,14 +1,30 @@
-<div class="index-banner", style="background-image: url(https://source.unsplash.com/random/300×150/?<%= @list.name.gsub(" ","-")%>)">
-  <div class="container-fluid banner-text">
-    <h1><%= @list.name%></h1>
+<% if @list.photo.attached? %>
+  <div class="index-banner", style="background-image: url('<%= cl_image_path @list.photo.key, crop: :fill %>')">
+        <div class="container-fluid banner-text">
+      <h1><%= @list.name%></h1>
+    </div>
+    <div class="align-self-end m-2",>
+      <%= link_to "delete",
+        list_path(@list),
+        data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, :class => "btn btn-warning text-white rounded"
+      %>
+    </div>
   </div>
-  <div class="align-self-end m-2",>
-    <%= link_to "delete",
-      list_path(@list),
-      data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, :class => "btn btn-warning text-white rounded"
-    %>
+<% else %>
+  <div class="index-banner", style="background-image: url(https://source.unsplash.com/random/300×150/?<%= @list.name.gsub(" ","-")%>)">
+    <div class="container-fluid banner-text">
+      <h1><%= @list.name%></h1>
+    </div>
+    <div class="align-self-end m-2",>
+      <%= link_to "delete",
+        list_path(@list),
+        data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, :class => "btn btn-warning text-white rounded"
+      %>
+    </div>
   </div>
-</div>
+<% end %>
+
+
 
 <div class="container px-4 mb-3 pb-5">
 
@@ -58,7 +74,7 @@
 
 
   <div class="row mx-1">
-    <div class="col-md-6">
+    <div class="col-md-6 mb-5">
       <h4 class="fw-bolder mb-4">Reviews</h4>
       <% if @list.reviews.empty? %>
         <small><em class="text-muted">Be the first one to review this list</em></small>
