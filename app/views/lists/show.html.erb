@@ -35,7 +35,7 @@
       <div class="collapse " id="collapseExample">
         <%= simple_form_for [@list, @bookmark] do |f| %>
           <div class="d-flex align-items-center justify-content-center  gap-4">
-            <%= f.association :movie, class:"mx-2"%>
+            <%= f.association :movie, collection: Movie.order(:title), class:"mx-2"%>
             <%= f.input :comment, class:"h-25 d-inline-block mx-2 " %>
             <%= f.submit "Add Movie", class: "btn btn-primary mx-2 " %>
           </div>
